@@ -1,6 +1,6 @@
 {
   "name": "smoren/reporter",
-  "description": "Report collector",
+  "description": "Report collector tool",
   "keywords": ["report", "collector", "error", "warning", "notice", "logger"],
   "license": "MIT",
   "authors": [

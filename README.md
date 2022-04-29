@@ -6,3 +6,10 @@ Report collector
 ```
 composer require smoren/reporter
 ```
+
+### Unit testing
+```
+composer install
+./vendor/bin/codecept build
+./vendor/bin/codecept run unit tests/unit
+```
