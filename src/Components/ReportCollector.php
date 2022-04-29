@@ -84,41 +84,17 @@ class ReportCollector
     }
 
     /**
-     * @param string|null $reportTypeClass
      * @return array
      */
-    public function getSummary(?string $reportTypeClass = null): array
+    public function getSummary(): array
     {
         $result = [];
 
         foreach($this->storage as $level => $levelTypes) {
-            if(!count($levelTypes)) continue;
-
-            $item = [
-                'alias' => $level,
-                'name' => ReportLevel::getTitle($level),
-                'data' => [],
-            ];
-
-            foreach($levelTypes as $type => $data) {
-                if(
-                    class_exists($reportTypeClass)
-                    && method_exists($reportTypeClass, 'getTitle')
-                ) {
-                    $name = $reportTypeClass::getTitle($type);
-                } else {
-                    $name = null;
-                }
-
-                $dataCount = count($data);
-                $item['data'][] = [
-                    'alias' => $type,
-                    'name' => $name,
-                    'count' => $dataCount,
-                ];
+            $result[$level] = [];
+            foreach($levelTypes as $type => $items) {
+                $result[$level][$type] = count($items);
             }
-
-            $result[] = $item;
         }
 
         return $result;

@@ -41,45 +41,17 @@ class ReporterTest extends \Codeception\Test\Unit
         $this->assertTrue($reportCollector->hasWarnings());
         $this->assertTrue($reportCollector->hasNotices());
 
-        $summary = $reportCollector->getSummary(ReportType::class);
+        $summary = $reportCollector->getSummary();
         $this->assertEquals([
-            [
-                'alias' => 'error',
-                'name' => 'Errors',
-                'data' => [
-                    [
-                        'alias' => 'error_test',
-                        'name' => 'Test error',
-                        'count' => 2
-                    ],
-                    [
-                        'alias' => 'error_unknown',
-                        'name' => 'Unknown error',
-                        'count' => 1
-                    ],
-                ],
+            'error' => [
+                'error_test' => 2,
+                'error_unknown' => 1,
             ],
-            [
-                'alias' => 'warning',
-                'name' => 'Warnings',
-                'data' => [
-                    [
-                        'alias' => 'warning_test',
-                        'name' => 'Test warning',
-                        'count' => 1
-                    ],
-                ],
+            'warning' => [
+                'warning_test' => 1,
             ],
-            [
-                'alias' => 'notice',
-                'name' => 'Notices',
-                'data' => [
-                    [
-                        'alias' => 'notice_test',
-                        'name' => 'Test notice',
-                        'count' => 1
-                    ],
-                ],
+            'notice' => [
+                'notice_test' => 1,
             ],
         ], $summary);
 
